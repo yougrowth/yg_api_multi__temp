@@ -8,8 +8,6 @@ const authRouter = (router) => {
     .route('/')
     .post((req, res) => {
       const { email, senha } = req.body
-
-      console.log(req.body)
       
       if (email && senha)
         res.status(OK).json({ token: encode({ email, senha}, 'CHURR0S') })
