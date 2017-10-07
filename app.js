@@ -11,4 +11,4 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/auth', authRoute(Router()))
 
-app.listen(3000, () => console.log('Listening on port 3000'))
+app.listen(process.env.PORT || 3000, () => console.log('Listening on port 3000'))
