@@ -2,7 +2,6 @@
 
 import { encode } from "jwt-simple";
 import { OK, UNAUTHORIZED } from "http-status";
-import { err, success } from '../../utils/response_builder'
 
 const authRouter = (router) => {
   router
@@ -13,9 +12,9 @@ const authRouter = (router) => {
       console.log(req.body)
       
       if (email && senha)
-        res.status(OK).json(success({ token: encode({ email, senha}, 'CHURR0S') }))
+        res.status(OK).json({ token: encode({ email, senha}, 'CHURR0S') })
       else
-        res.status(UNAUTHORIZED).json(err('Email ou senha inválidos'))
+        res.status(UNAUTHORIZED).json({ message: 'Email ou senha inválidos' })
     })
 
   return router
