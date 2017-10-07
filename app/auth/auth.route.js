@@ -10,7 +10,7 @@ const authRouter = (router) => {
     .post((req, res) => {
       const { email, senha } = req.body
 
-      console.log(`POST request to '/auth' at ${new Date().toISOString()}`)
+      console.log(req.body)
       
       if (email && senha)
         res.status(OK).json(success({ token: encode({ email, senha}, 'CHURR0S') }))
