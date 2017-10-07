@@ -1,0 +1,25 @@
+{
+  "name": "yg_api_multi_temp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node app.js",
+    "start:dev": "nodemon --exec babel-node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "http-status": "^1.0.1",
+    "jwt-simple": "^0.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
