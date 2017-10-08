@@ -6,11 +6,11 @@ import { compareSync } from "bcrypt-nodejs";
 import { encode } from "jwt-simple";
 
 export const usuarioRoute = router => {
-  const usuarioDAO = new UsuarioDAO()
-
   router
     .route('/')
     .post((req, res) => {
+      const usuarioDAO = new UsuarioDAO()
+
       usuarioDAO  
         .novo(req.body)
         .then(resp => res.status(CREATED).json({ id: resp.insertId }))
@@ -20,6 +20,8 @@ export const usuarioRoute = router => {
         })
     })
     .get((req, res) => {
+      const usuarioDAO = new UsuarioDAO()
+
       usuarioDAO
         .listaTodos()
         .then(resp => res.status(OK).json(resp))
@@ -32,6 +34,8 @@ export const usuarioRoute = router => {
   router
     .route('/:id')
     .get((req, res) => {
+      const usuarioDAO = new UsuarioDAO()
+
       usuarioDAO
         .lista(req.params.id)
         .then(resp => res.status(OK).json(resp[0]))
@@ -44,13 +48,15 @@ export const usuarioRoute = router => {
   router
     .route('/auth')
     .post((req, res) => {
+      const usuarioDAO = new UsuarioDAO()
+      
       usuarioDAO
         .listaPorEmail(req.body.email)
         .then(usuario => {
-          if (compareSync(req.body.senha, usuario[0].senha))
-            res.status(OK).json({ token: encode({ id: usuario.id }, process.env.JWT_KEY) })
-          else
+          if (!usuario[0] || !compareSync(req.body.senha, usuario[0].senha))
             res.status(UNAUTHORIZED).json({ message: 'Email ou senha inválidos' })
+          else
+            res.status(OK).json({ token: encode({ id: usuario.id }, process.env.JWT_KEY) })
         })
         .catch(err => {
           console.error(err)
