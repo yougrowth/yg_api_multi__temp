@@ -2,7 +2,7 @@
 
 import { createConnection } from "mysql";
 
-const conn = null
+let conn = null
 
 export const getConnection = () => {
   conn = createConnection(process.env.CLEARDB_DATABASE_URL)
