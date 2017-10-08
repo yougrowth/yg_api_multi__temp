@@ -11,7 +11,7 @@ export const getConnection = () => {
     if (err.code === 'PROTOCOL_CONNECTION_LOST')
       getConnection()
     else
-      console.log(err)
+      console.error(err)
   })
 
   return conn

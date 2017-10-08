@@ -14,15 +14,19 @@ export const usuarioRoute = router => {
       usuarioDAO  
         .novo(req.body)
         .then(resp => res.status(CREATED).json({ id: resp.insertId }))
-        .catch(err => res.status(BAD_REQUEST)
-          .json({ message: 'Não foi possível criar o usuário' }))
+        .catch(err => {
+          console.error(err)
+          res.status(BAD_REQUEST).json({ message: 'Não foi possível criar o usuário' })
+        })
     })
     .get((req, res) => {
       usuarioDAO
         .listaTodos()
         .then(resp => res.status(OK).json(resp))
-        .catch(err => res.status(UNPROCESSABLE_ENTITY)
-          .json({ message: 'Não foi possível listar os usuários'}))
+        .catch(err => {
+          console.error(err)
+          res.status(UNPROCESSABLE_ENTITY).json({ message: 'Não foi possível listar os usuários'})
+        })
     })
 
   router
@@ -31,7 +35,10 @@ export const usuarioRoute = router => {
       usuarioDAO
         .lista(req.params.id)
         .then(resp => res.status(OK).json(resp[0]))
-        .catch(err => res.status(UNPROCESSABLE_ENTITY).json({ message: 'Usuário não encontrado'}))
+        .catch(err => {
+          console.error(err)
+          res.status(UNPROCESSABLE_ENTITY).json({ message: 'Usuário não encontrado'})
+        })
     })
 
   router
@@ -45,7 +52,10 @@ export const usuarioRoute = router => {
           else
             res.status(UNAUTHORIZED).json({ message: 'Email ou senha inválidos' })
         })
-        .catch(err => res.status(UNAUTHORIZED).json({ message: 'Email ou senha inválidos' }))
+        .catch(err => {
+          console.error(err)
+          res.status(UNAUTHORIZED).json({ message: 'Email ou senha inválidos' })
+        })
     })
 
   return router
