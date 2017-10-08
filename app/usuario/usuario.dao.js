@@ -18,7 +18,7 @@ export default class UsuarioDAO {
       email='${usuario.email}',
       cidade='${usuario.cidade}',
       senha='${usuario.senha}'`
-
+      
     return this.conn.queryAsync(query)
   }
 
