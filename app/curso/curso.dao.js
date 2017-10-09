@@ -49,7 +49,7 @@ export default class CursoDAO {
     query += ', autor='       + (curso.autor       ? curso.autor   : null)
 
     return this.conn.queryAsync(query)
-      .then(this.endConnection)
+      .then(resp => this.endConnectionAndReturn(resp))
   }
 
   listaTodos() {
