@@ -9,6 +9,7 @@ export const cursoRoute = router => {
     .route('/')
     .post((req, res) => {
       const cursoDAO = new CursoDAO()
+      console.log(req.get('Authorization'))
       const usuario = decode(req.get('Authorization'), process.env.JWT_KEY)
       const curso = Object.assign(req.body, { autor: usuario.id })
 
