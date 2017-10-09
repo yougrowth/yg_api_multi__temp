@@ -53,7 +53,8 @@ export default class CursoDAO {
   }
 
   listaTodos() {
-    const query = `SELECT curso.*, autor.id as id_autor, autor.nome as nome_autor FROM t_curso as curso
+    const query = `SELECT curso.*, autor.id as id_autor, autor.foto as foto_autor, autor.nome as nome_autor 
+    FROM t_curso as curso
     JOIN t_usuario as autor on curso.autor = autor.id`
 
     return this.conn.queryAsync(query)
