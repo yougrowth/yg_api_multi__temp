@@ -6,6 +6,7 @@ import express, { Router } from "express"
 import bodyParser from "body-parser"
 
 import { usuarioRoute } from "./app/usuario/usuario.route";
+import { cursoRoute } from "./app/curso/curso.route";
 
 if (process.env.NODE_ENV !== 'prod') {
   dotenv.config({ path: path.join(__dirname, './env/dev.env') })
@@ -22,6 +23,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
 app.use('/usuario', usuarioRoute(Router()))
+app.use('/curso', cursoRoute(Router()))
 
 app.listen(process.env.PORT || 3000, () => console.log('Listening on port 3000'))

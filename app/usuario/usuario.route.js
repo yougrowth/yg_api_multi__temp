@@ -30,18 +30,6 @@ export const usuarioRoute = router => {
           res.status(UNPROCESSABLE_ENTITY).json({ message: 'Não foi possível listar os usuários'})
         })
     })
-    .put((req, res) => {
-      const usuarioDAO = new UsuarioDAO()
-      const usuario = req.body
-
-      usuarioDAO
-        .atualizar(usuario)
-        .then(resp => res.sendStatus(OK))
-        .catch(err => {
-          console.log(err)
-          res.status(UNPROCESSABLE_ENTITY).json({ message: 'Não foi possível atualizar o usuário'})
-        })
-    })
 
   router
     .route('/:id')

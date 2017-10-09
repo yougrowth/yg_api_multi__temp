@@ -32,15 +32,5 @@ export default class UsuarioDAO {
 
   listaPorEmail(email) {
     return this.conn.queryAsync(`SELECT * FROM t_usuario WHERE email='${email}' LIMIT 1`)
-  }
-
-  atualizar(usuario) {
-    return this.conn.queryAsync(`
-      UPDATE t_usuario SET 
-        nome='${usuario.nome}',
-        foto='${usuario.foto}',
-        email='${usuario.email}' 
-      WHERE id=${usuario.id}
-    `)
   } 
 }
