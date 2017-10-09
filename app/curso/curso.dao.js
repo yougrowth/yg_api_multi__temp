@@ -40,7 +40,7 @@ export default class CursoDAO {
 
     query += 'nome='          + (curso.nome        ? `'${ curso.nome }'`   : null)
     query += ', nivel='       + (curso.nivel       ? `'${ curso.nivel }'`  : null)
-    query += ', imagem='      + (curso.imagem      ? `'${ curso.imagem }'` : null)
+    query += ', imagem='      + (curso.imagem      ? `'${ curso.imagem }'` : 'avatar.jpg')
     query += ', descricao='   + (curso.descricao   ? `'${ curso.descricao }'`   : null)
     query += ', categoria='   + (curso.categoria   ? `'${ curso.categoria }'`   : null)
     query += ', privacidade=' + (curso.privacidade ? `'${ curso.privacidade }'` : null)
