@@ -11,6 +11,7 @@ export const cursoRoute = router => {
       const cursoDAO = new CursoDAO()
       console.log(req.get('Authorization'))
       const usuario = decode(req.get('Authorization'), process.env.JWT_KEY)
+      console.log(usuario)
       const curso = Object.assign(req.body, { autor: usuario.id })
 
       cursoDAO
