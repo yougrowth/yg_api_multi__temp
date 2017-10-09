@@ -31,6 +31,7 @@ export default class CursoDAO {
     return this.conn.queryAsync(query)
       .then(cursos => cursos.map(curso => ({ 
           id: curso.id, 
+          nome: curso.nome,
           imagem: curso.imagem, 
           descricao: curso.descricao,
           categoria: curso.categoria,
