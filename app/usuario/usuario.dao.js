@@ -20,7 +20,7 @@ export default class UsuarioDAO {
     
     let query = 'INSERT INTO `t_usuario` SET '
     query += 'nome='     + (usuario.nome   ? `'${ usuario.nome }'`   : null)
-    query += ', foto='   + (usuario.foto   ? `'${ usuario.foto }'`   : 'avatar.jpg')
+    query += ', foto='   + (usuario.foto   ? `'${ usuario.foto }'`   : '\'avatar.jpg\'')
     query += ', cidade=' + (usuario.cidade ? `'${ usuario.cidade }'` : null)
     query += ', email='  + (usuario.email  ? `'${ usuario.email }'`  : null)
     query += ', senha='  + (usuario.senha  ? `'${ usuario.senha }'`  : null)
