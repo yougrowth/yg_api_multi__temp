@@ -32,24 +32,10 @@ export const usuarioRoute = router => {
     })
 
   router
-    .route('/:id')
-    .get((req, res) => {
-      const usuarioDAO = new UsuarioDAO()
-
-      usuarioDAO
-        .lista(req.params.id)
-        .then(resp => res.status(OK).json(resp[0]))
-        .catch(err => {
-          console.error(err)
-          res.status(UNPROCESSABLE_ENTITY).json({ message: 'Usuário não encontrado'})
-        })
-    })
-
-  router
     .route('/auth')
     .post((req, res) => {
       const usuarioDAO = new UsuarioDAO()
-      
+
       usuarioDAO
         .listaPorEmail(req.body.email)
         .then(usuario => {
@@ -61,6 +47,20 @@ export const usuarioRoute = router => {
         .catch(err => {
           console.error(err)
           res.status(UNAUTHORIZED).json({ message: 'Email ou senha inválidos' })
+        })
+    })
+
+  router
+    .route('/:id')
+    .get((req, res) => {
+      const usuarioDAO = new UsuarioDAO()
+
+      usuarioDAO
+        .lista(req.params.id)
+        .then(resp => res.status(OK).json(resp[0]))
+        .catch(err => {
+          console.error(err)
+          res.status(UNPROCESSABLE_ENTITY).json({ message: 'Usuário não encontrado'})
         })
     })
 
