@@ -25,6 +25,23 @@ export default class CursoDAO {
   }
 
   listaTodos() {
-    return this.conn.queryAsync(`SELECT * FROM t_curso`)
+    const query = `SELECT curso.*, autor.id as id_autor, autor.nome as nome_autor FROM t_curso as curso
+    JOIN t_usuario as autor on curso.autor = autor.id`
+
+    return this.conn.queryAsync(query)
+      .then(cursos => cursos.map(curso => ({ 
+          id: curso.id, 
+          imagem: curso.imagem, 
+          descricao: curso.descricao,
+          categoria: curso.categoria,
+          nivel: curso.nivel,
+          privacidade: curso.privacidade,
+          preco: curso.preco,
+          duracao: curso.duracao,
+          autor: {
+            id: curso.id_autor,
+            nome: curso.nome_autor
+          }
+        })))
   }
 }
