@@ -56,7 +56,7 @@ export const usuarioRoute = router => {
           if (!usuario[0] || !compareSync(req.body.senha, usuario[0].senha))
             res.status(UNAUTHORIZED).json({ message: 'Email ou senha inválidos' })
           else
-            res.status(OK).json({ token: encode({ id: usuario.id }, process.env.JWT_KEY) })
+            res.status(OK).json({ token: encode({ id: usuario[0].id }, process.env.JWT_KEY) })
         })
         .catch(err => {
           console.error(err)
